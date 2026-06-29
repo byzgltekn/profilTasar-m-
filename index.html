@@ -33,6 +33,7 @@
   }
 
   .profile-card{
+    position:relative;
     width:min(920px, 100%);
     background:var(--card);
     border:1px solid var(--line);
@@ -41,6 +42,44 @@
     overflow:hidden;
     display:grid;
     grid-template-columns:320px 1fr;
+  }
+
+  .quick-actions{
+    position:absolute;
+    top:18px;
+    right:18px;
+    z-index:2;
+    display:flex;
+    gap:10px;
+  }
+
+  .icon-button{
+    width:40px;
+    height:40px;
+    border:1px solid rgba(230, 233, 238, 0.9);
+    border-radius:50%;
+    background:rgba(255, 255, 255, 0.9);
+    color:var(--text);
+    display:grid;
+    place-items:center;
+    cursor:pointer;
+    box-shadow:0 10px 22px rgba(30, 41, 59, 0.12);
+  }
+
+  .icon-button:hover{
+    background:#ffffff;
+    color:var(--brand-dark);
+  }
+
+  .icon-button:focus-visible{
+    outline:3px solid rgba(38,107,115,0.25);
+    outline-offset:3px;
+  }
+
+  .icon-button svg{
+    width:19px;
+    height:19px;
+    stroke:currentColor;
   }
 
   .profile-photo{
@@ -293,6 +332,25 @@
 </head>
 <body>
   <main class="profile-card" aria-label="Kullanıcı profil kartı">
+    <div class="quick-actions" aria-label="Profil işlemleri">
+      <button class="icon-button" type="button" aria-label="Bağlantıyı paylaş" title="Bağlantıyı paylaş">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="18" cy="5" r="3"></circle>
+          <circle cx="6" cy="12" r="3"></circle>
+          <circle cx="18" cy="19" r="3"></circle>
+          <path d="M8.6 10.7l6.8-4.4"></path>
+          <path d="M8.6 13.3l6.8 4.4"></path>
+        </svg>
+      </button>
+      <button class="icon-button" type="button" aria-label="Diğer seçenekler" title="Diğer seçenekler">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="5" r="1"></circle>
+          <circle cx="12" cy="12" r="1"></circle>
+          <circle cx="12" cy="19" r="1"></circle>
+        </svg>
+      </button>
+    </div>
+
     <section class="profile-photo" aria-label="Profil görseli">
       <span class="tag">Aktif stajyer</span>
       <div class="avatar" aria-hidden="true"></div>
