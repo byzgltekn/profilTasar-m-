@@ -1,0 +1,56 @@
+<main class="page">
+  <section class="profile-card" aria-label="Stajyer profil kartı">
+    <div class="quick-actions" aria-label="Profil işlemleri">
+      <button class="icon-button" type="button" aria-label="Profili paylaş" title="Profili paylaş">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="18" cy="5" r="3"></circle>
+          <circle cx="6" cy="12" r="3"></circle>
+          <circle cx="18" cy="19" r="3"></circle>
+          <path d="M8.6 10.7l6.8-4.4"></path>
+          <path d="M8.6 13.3l6.8 4.4"></path>
+        </svg>
+      </button>
+
+      <button class="icon-button" type="button" aria-label="Daha fazla seçenek" title="Daha fazla seçenek">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="5" r="1"></circle>
+          <circle cx="12" cy="12" r="1"></circle>
+          <circle cx="12" cy="19" r="1"></circle>
+        </svg>
+      </button>
+    </div>
+
+    <section class="profile-photo" aria-label="Profil görseli">
+      <span class="tag">{{ profile.tag }}</span>
+      <div class="avatar" [attr.data-initials]="profile.initials" aria-hidden="true"></div>
+      <p class="photo-note">{{ profile.note }}</p>
+    </section>
+
+    <section class="profile-content">
+      <div class="intro">
+        <div>
+          <h1>{{ profile.name }}</h1>
+          <p class="role">{{ profile.role }}</p>
+        </div>
+        <span class="status">{{ profile.status }}</span>
+      </div>
+
+      <div class="details">
+        @for (detail of profile.details; track detail.label) {
+          <div class="detail">
+            <span class="detail-label">{{ detail.label }}</span>
+            <span class="detail-value">{{ detail.value }}</span>
+          </div>
+        }
+      </div>
+
+      <div class="actions">
+        <button class="button" type="button">Profili düzenle</button>
+        <a class="link" [href]="profile.linkedin.url" target="_blank" rel="noreferrer">
+          {{ profile.linkedin.text }}
+        </a>
+        <a class="link" [href]="profile.messageUrl">Mesaj gönder</a>
+      </div>
+    </section>
+  </section>
+</main>
