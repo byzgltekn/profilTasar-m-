@@ -1,0 +1,72 @@
+:host {
+  display: block;
+}
+
+.app-shell {
+  min-height: 100vh;
+  background: #f4f6f8;
+  color: #1f2933;
+  font-family: Inter, Arial, sans-serif;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 18px 32px;
+  background: #ffffff;
+  border-bottom: 1px solid #e6e9ee;
+}
+
+.brand {
+  color: #1f5960;
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-links a {
+  color: #266b73;
+  border: 1px solid #c9e3e7;
+  border-radius: 8px;
+  padding: 9px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  background: #dfeff1;
+}
+
+.page-content {
+  padding: 32px;
+}
+
+@media (max-width: 640px) {
+  .topbar {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  .nav-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .nav-links a {
+    text-align: center;
+  }
+
+  .page-content {
+    padding: 18px;
+  }
+}
