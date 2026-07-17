@@ -1,5 +1,40 @@
 <section class="page-header">
   <p class="eyebrow">Route 1</p>
-  <h1>Kullanici listesi ve ayni sayfada detay paneli</h1>
-  <p>Bu sayfada solda kullanicilar, sagda secilen kullanicinin detaylari olacak.</p>
+  <h1>User list and same-page detail panel</h1>
+  <p>Users are listed on the left, and the selected user's details appear on the right.</p>
+</section>
+
+<section class="route-layout">
+  <aside class="user-list" aria-label="User list">
+    <h2>Users</h2>
+
+    @if (isLoading()) {
+      <p class="state-text">Loading users...</p>
+    } @else if (hasError()) {
+      <p class="state-text error">Users could not be loaded.</p>
+    } @else {
+      <div class="list-items">
+        @for (user of users(); track user.id) {
+          <button
+            class="user-button"
+            [class.active]="selectedUser()?.id === user.id"
+            type="button"
+            (click)="selectUser(user)"
+          >
+            <span>{{ user.name }}</span>
+            <small>@{{ user.username }}</small>
+          </button>
+        }
+      </div>
+    }
+  </aside>
+
+  <section class="detail-panel">
+    @if (selectedUser(); as user) {
+      <app-user-card [user]="user" />
+    } @else {
+      <h2>Detail panel</h2>
+      <p>Select a user from the list to view their details.</p>
+    }
+  </section>
 </section>

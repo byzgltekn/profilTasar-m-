@@ -1,1 +1,52 @@
-<p>user-card works!</p>
+<section class="profile-card" aria-label="User profile card">
+  <div class="quick-actions" aria-label="Profile actions">
+    <button class="icon-button" type="button" aria-label="Share profile" title="Share profile">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"></circle>
+        <circle cx="6" cy="12" r="3"></circle>
+        <circle cx="18" cy="19" r="3"></circle>
+        <path d="M8.6 10.7l6.8-4.4"></path>
+        <path d="M8.6 13.3l6.8 4.4"></path>
+      </svg>
+    </button>
+
+    <button class="icon-button" type="button" aria-label="More options" title="More options">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="5" r="1"></circle>
+        <circle cx="12" cy="12" r="1"></circle>
+        <circle cx="12" cy="19" r="1"></circle>
+      </svg>
+    </button>
+  </div>
+
+  <section class="profile-photo" aria-label="Profile visual">
+    <span class="tag">{{ tagText }}</span>
+    <div class="avatar" [attr.data-initials]="initials" aria-hidden="true"></div>
+    <p class="photo-note">{{ note }}</p>
+  </section>
+
+  <section class="profile-content">
+    <div class="intro">
+      <div>
+        <h2>{{ user().name }}</h2>
+        <p class="role">{{ role }}</p>
+      </div>
+      <span class="status">Active</span>
+    </div>
+
+    <div class="details">
+      @for (detail of details; track detail.label) {
+        <div class="detail">
+          <span class="detail-label">{{ detail.label }}</span>
+          <span class="detail-value">{{ detail.value }}</span>
+        </div>
+      }
+    </div>
+
+    <div class="actions">
+      <button class="button" type="button">Edit profile</button>
+      <a class="link" [href]="websiteUrl" target="_blank" rel="noreferrer">{{ user().website }}</a>
+      <a class="link" [href]="messageUrl">Send message</a>
+    </div>
+  </section>
+</section>
