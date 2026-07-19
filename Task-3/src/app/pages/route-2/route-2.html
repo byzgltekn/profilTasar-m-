@@ -3,3 +3,28 @@
   <h1>User list and routed detail page</h1>
   <p>Clicking a user will navigate to a separate detail route.</p>
 </section>
+
+<section class="list-panel" aria-label="User list">
+  <div class="panel-heading">
+    <h2>Users</h2>
+    <p>Choose a user to open their profile on a routed detail page.</p>
+  </div>
+
+  @if (isLoading()) {
+    <p class="state-text">Loading users...</p>
+  } @else if (hasError()) {
+    <p class="state-text error">Users could not be loaded.</p>
+  } @else {
+    <div class="user-grid">
+      @for (user of users(); track user.id) {
+        <a class="user-card-link" [routerLink]="['/route-2/user', user.id]">
+          <span class="avatar-mini">{{ user.name.slice(0, 1) }}</span>
+          <span>
+            <strong>{{ user.name }}</strong>
+            <small>@{{ user.username }} - {{ user.company.name }}</small>
+          </span>
+        </a>
+      }
+    </div>
+  }
+</section>

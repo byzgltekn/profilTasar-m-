@@ -3,3 +3,18 @@
   <h1>Selected user detail</h1>
   <p>This page will read the userId from the route and display that user's information.</p>
 </section>
+
+<a class="back-link" routerLink="/route-2">Back to user list</a>
+
+@if (isLoading()) {
+  <section class="state-panel">
+    <p>Loading user detail...</p>
+  </section>
+} @else if (hasError() || !user()) {
+  <section class="state-panel error">
+    <h2>User could not be loaded</h2>
+    <p>Please return to the list and select another user.</p>
+  </section>
+} @else {
+  <app-user-card [user]="user()!" />
+}
