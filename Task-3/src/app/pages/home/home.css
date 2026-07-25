@@ -1,0 +1,85 @@
+.home-panel {
+  max-width: 980px;
+  margin: 0 auto;
+  background: #ffffff;
+  border: 1px solid #e6e9ee;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 12px 30px rgba(30, 41, 59, 0.08);
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #266b73;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+h1,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 10px;
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+.intro {
+  max-width: 640px;
+  color: #6b7280;
+  line-height: 1.55;
+}
+
+.route-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.route-card {
+  display: grid;
+  gap: 8px;
+  min-height: 160px;
+  border: 1px solid #e6e9ee;
+  border-radius: 10px;
+  padding: 20px;
+  background: #f9fbfc;
+  color: #1f2933;
+  text-decoration: none;
+}
+
+.route-card:hover {
+  border-color: #c9e3e7;
+  background: #eef5f7;
+}
+
+.route-card span {
+  color: #266b73;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.route-card strong {
+  font-size: 21px;
+}
+
+.route-card small {
+  color: #6b7280;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+@media (max-width: 720px) {
+  .home-panel {
+    padding: 22px;
+  }
+
+  .route-cards {
+    grid-template-columns: 1fr;
+  }
+}
