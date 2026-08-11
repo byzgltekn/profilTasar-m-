@@ -1,0 +1,92 @@
+<a class="back-link" routerLink="/users">Back to list</a>
+
+<section class="form-panel">
+  <div class="page-header">
+    <p class="eyebrow">{{ isEditMode ? 'Edit User' : 'Add User' }}</p>
+    <h1>{{ isEditMode ? 'Update user information' : 'Create a new user' }}</h1>
+    <p>The form saves user information directly to localStorage.</p>
+  </div>
+
+  @if (isEditMode && !existingUser()) {
+    <div class="state-card">
+      <h2>User not found</h2>
+      <p>Please return to the list and select another user.</p>
+    </div>
+  } @else {
+    <form class="user-form" #userForm="ngForm" (ngSubmit)="saveUser()">
+      <label>
+        Name
+        <input name="name" [(ngModel)]="form.name" required />
+      </label>
+
+      <label>
+        Username
+        <input name="username" [(ngModel)]="form.username" required />
+      </label>
+
+      <label>
+        Email
+        <input name="email" type="email" [(ngModel)]="form.email" required />
+      </label>
+
+      <label>
+        Phone
+        <input name="phone" [(ngModel)]="form.phone" required />
+      </label>
+
+      <label>
+        City
+        <input name="city" [(ngModel)]="form.address.city" required />
+      </label>
+
+      <label>
+        Street
+        <input name="street" [(ngModel)]="form.address.street" required />
+      </label>
+
+      <label>
+        Suite
+        <input name="suite" [(ngModel)]="form.address.suite" required />
+      </label>
+
+      <label>
+        Zipcode
+        <input name="zipcode" [(ngModel)]="form.address.zipcode" required />
+      </label>
+
+      <label>
+        Latitude
+        <input name="lat" [(ngModel)]="form.address.geo.lat" required />
+      </label>
+
+      <label>
+        Longitude
+        <input name="lng" [(ngModel)]="form.address.geo.lng" required />
+      </label>
+
+      <label>
+        Company
+        <input name="companyName" [(ngModel)]="form.company.name" required />
+      </label>
+
+      <label>
+        Catch phrase
+        <input name="catchPhrase" [(ngModel)]="form.company.catchPhrase" required />
+      </label>
+
+      <label>
+        Business
+        <input name="bs" [(ngModel)]="form.company.bs" required />
+      </label>
+
+      <label>
+        Website
+        <input name="website" [(ngModel)]="form.website" required />
+      </label>
+
+      <button class="primary-button" type="submit" [disabled]="userForm.invalid">
+        {{ isEditMode ? 'Update User' : 'Add User' }}
+      </button>
+    </form>
+  }
+</section>

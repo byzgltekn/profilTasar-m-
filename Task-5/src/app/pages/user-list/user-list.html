@@ -1,0 +1,31 @@
+<section class="page-header">
+  <div>
+    <p class="eyebrow">User List</p>
+    <h1>LocalStorage Users</h1>
+    <p>Users are stored in the browser with localStorage. No mock service or API request is used.</p>
+  </div>
+
+  <a class="primary-button" routerLink="/users/new">Add User</a>
+</section>
+
+<section class="list-panel">
+  @if (users().length) {
+    <div class="user-list">
+      @for (user of users(); track user.id) {
+        <article class="user-row">
+          <div>
+            <h2>{{ user.name }}</h2>
+            <p>@{{ user.username }} · {{ user.email }}</p>
+          </div>
+
+          <div class="row-actions">
+            <a [routerLink]="['/users', user.id]">Detail</a>
+            <a [routerLink]="['/users', user.id, 'edit']">Edit</a>
+          </div>
+        </article>
+      }
+    </div>
+  } @else {
+    <p class="empty-state">No users found.</p>
+  }
+</section>

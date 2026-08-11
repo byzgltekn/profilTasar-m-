@@ -1,0 +1,72 @@
+<a class="back-link" routerLink="/users">Back to list</a>
+
+@if (user(); as user) {
+  <section class="detail-card">
+    <div class="profile-side">
+      <span class="avatar">{{ getInitials(user.name) }}</span>
+      <p class="username">@{{ user.username }}</p>
+      <h1>{{ user.name }}</h1>
+      <p>{{ user.company.name }}</p>
+    </div>
+
+    <div class="details">
+      <div>
+        <span>Email</span>
+        <strong>{{ user.email }}</strong>
+      </div>
+      <div>
+        <span>Phone</span>
+        <strong>{{ user.phone }}</strong>
+      </div>
+      <div>
+        <span>City</span>
+        <strong>{{ user.address.city }}</strong>
+      </div>
+      <div>
+        <span>Street</span>
+        <strong>{{ user.address.street }}</strong>
+      </div>
+      <div>
+        <span>Suite</span>
+        <strong>{{ user.address.suite }}</strong>
+      </div>
+      <div>
+        <span>Zipcode</span>
+        <strong>{{ user.address.zipcode }}</strong>
+      </div>
+      <div>
+        <span>Latitude</span>
+        <strong>{{ user.address.geo.lat }}</strong>
+      </div>
+      <div>
+        <span>Longitude</span>
+        <strong>{{ user.address.geo.lng }}</strong>
+      </div>
+      <div>
+        <span>Website</span>
+        <strong>{{ user.website }}</strong>
+      </div>
+      <div>
+        <span>Company</span>
+        <strong>{{ user.company.name }}</strong>
+      </div>
+      <div>
+        <span>Catch phrase</span>
+        <strong>{{ user.company.catchPhrase }}</strong>
+      </div>
+      <div>
+        <span>Business</span>
+        <strong>{{ user.company.bs }}</strong>
+      </div>
+    </div>
+
+    <div class="card-actions">
+      <a class="primary-button" [routerLink]="['/users', user.id, 'edit']">Edit User</a>
+    </div>
+  </section>
+} @else {
+  <section class="state-card">
+    <h1>User not found</h1>
+    <p>Please return to the list and select another user.</p>
+  </section>
+}
