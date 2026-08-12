@@ -21,7 +21,10 @@
 
       <label>
         Username
-        <input name="username" [(ngModel)]="form.username" required />
+        <input name="username" [(ngModel)]="form.username" (ngModelChange)="usernameError = ''" required />
+        @if (usernameError) {
+          <span class="field-error">{{ usernameError }}</span>
+        }
       </label>
 
       <label>

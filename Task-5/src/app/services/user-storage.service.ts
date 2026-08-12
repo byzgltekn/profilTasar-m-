@@ -243,8 +243,19 @@ const INITIAL_USERS: User[] = [
 export class UserStorageService {
   users = signal<User[]>(this.loadUsers());
 
-  getUserById(id: number): User | undefined {
-    return this.users().find((user) => user.id === id);
+  getUserByUsername(username: string): User | undefined {
+    const normalizedUsername = this.normalizeUsername(username);
+    return this.users().find((user) => this.normalizeUsername(user.username) === normalizedUsername);
+  }
+
+  isUsernameTaken(username: string, currentUsername = ''): boolean {
+    const normalizedUsername = this.normalizeUsername(username);
+    const normalizedCurrentUsername = this.normalizeUsername(currentUsername);
+
+    return this.users().some((user) => {
+      const userUsername = this.normalizeUsername(user.username);
+      return userUsername === normalizedUsername && userUsername !== normalizedCurrentUsername;
+    });
   }
 
   addUser(value: UserFormValue): User {
@@ -257,20 +268,20 @@ export class UserStorageService {
     return user;
   }
 
-  updateUser(id: number, value: UserFormValue): User | undefined {
+  updateUser(username: string, value: UserFormValue): User | undefined {
     const updatedUsers = this.users().map((user) => {
-      if (user.id !== id) {
+      if (this.normalizeUsername(user.username) !== this.normalizeUsername(username)) {
         return user;
       }
 
       return {
-        id,
+        id: user.id,
         ...value,
       };
     });
 
     this.saveUsers(updatedUsers);
-    return this.getUserById(id);
+    return this.getUserByUsername(value.username);
   }
 
   private loadUsers(): User[] {
@@ -308,5 +319,9 @@ export class UserStorageService {
 
   private hasLocalStorage(): boolean {
     return typeof localStorage !== 'undefined';
+  }
+
+  private normalizeUsername(username: string): string {
+    return username.trim().toLowerCase();
   }
 }

@@ -16,31 +16,43 @@ export class UserForm {
   private readonly router = inject(Router);
   private readonly userStorage = inject(UserStorageService);
 
-  userId = Number(this.route.snapshot.paramMap.get('id'));
-  isEditMode = Boolean(this.userId);
-  existingUser = computed(() => this.userStorage.getUserById(this.userId));
+  username = this.route.snapshot.paramMap.get('username') ?? '';
+  isEditMode = Boolean(this.username);
+  existingUser = computed(() => this.userStorage.getUserByUsername(this.username));
+  usernameError = '';
 
   form: UserFormValue = this.getInitialFormValue();
 
   saveUser(): void {
+    this.usernameError = '';
+
+    if (this.userStorage.isUsernameTaken(this.form.username, this.username)) {
+      this.usernameError = 'This username is already used by another user.';
+      return;
+    }
+
     if (this.isEditMode) {
-      this.userStorage.updateUser(this.userId, this.form);
-      this.router.navigate(['/users', this.userId]);
+      const user = this.userStorage.updateUser(this.username, this.form);
+      this.router.navigate(['/users', user?.username ?? this.form.username]);
       return;
     }
 
     const user = this.userStorage.addUser(this.form);
-    this.router.navigate(['/users', user.id]);
+    this.router.navigate(['/users', user.username]);
   }
 
   private getInitialFormValue(): UserFormValue {
-    const user = this.userStorage.getUserById(this.userId);
+    const user = this.userStorage.getUserByUsername(this.username);
 
     if (user) {
       const { id, ...formValue } = user;
       return formValue;
     }
 
+    return this.createEmptyFormValue();
+  }
+
+  private createEmptyFormValue(): UserFormValue {
     return {
       name: '',
       username: '',

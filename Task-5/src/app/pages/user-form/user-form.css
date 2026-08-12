@@ -74,6 +74,12 @@ input:focus {
   outline: 3px solid rgba(38, 107, 115, 0.16);
 }
 
+.field-error {
+  color: #c2410c;
+  font-size: 13px;
+  font-weight: 800;
+}
+
 .primary-button {
   width: max-content;
   border: 0;

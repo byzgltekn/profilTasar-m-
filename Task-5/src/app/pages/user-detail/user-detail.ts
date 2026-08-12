@@ -13,8 +13,8 @@ export class UserDetail {
   private readonly route = inject(ActivatedRoute);
   private readonly userStorage = inject(UserStorageService);
 
-  userId = Number(this.route.snapshot.paramMap.get('id'));
-  user = computed(() => this.userStorage.getUserById(this.userId));
+  username = this.route.snapshot.paramMap.get('username') ?? '';
+  user = computed(() => this.userStorage.getUserByUsername(this.username));
 
   getInitials(name: string): string {
     return name
